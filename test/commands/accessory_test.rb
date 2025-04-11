@@ -135,15 +135,15 @@ class CommandsAccessoryTest < ActiveSupport::TestCase
       new_command(:mysql).logs.join(" ")
 
     assert_equal \
-      "docker logs app-mysql  --since 5m  --tail 100 --timestamps 2>&1 | grep 'thing'",
+      "docker logs app-mysql --since 5m --tail 100 --timestamps 2>&1 | grep 'thing'",
       new_command(:mysql).logs(since: "5m", lines: 100, grep: "thing").join(" ")
 
     assert_equal \
-      "docker logs app-mysql  --since 5m  --tail 100 --timestamps 2>&1 | grep 'thing' -C 2",
+      "docker logs app-mysql --since 5m --tail 100 --timestamps 2>&1 | grep 'thing' -C 2",
       new_command(:mysql).logs(since: "5m", lines: 100, grep: "thing", grep_options: "-C 2").join(" ")
 
     assert_equal \
-      "docker logs app-mysql  --since 5m  --tail 100 2>&1 | grep 'thing' -C 2",
+      "docker logs app-mysql --since 5m --tail 100 2>&1 | grep 'thing' -C 2",
       new_command(:mysql).logs(timestamps: false, since: "5m", lines: 100, grep: "thing", grep_options: "-C 2").join(" ")
   end
 
